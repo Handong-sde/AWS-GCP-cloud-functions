@@ -1,0 +1,20 @@
+/**
+ * Responds to any HTTP request.
+ *
+ * @param {!express:Request} req HTTP request context.
+ * @param {!express:Response} res HTTP response context.
+ */
+exports.helloWorld = (req, res) => {
+
+  const {Storage} = require('@google-cloud/storage');
+  const storage = new Storage();
+
+const bucket = storage.bucket('b_2020_2');
+const file = bucket.file('8000.png');
+const anotherBucket = storage.bucket('b_2020_2b');
+file.copy(anotherBucket, function(err, copiedFile, apiResponse) {
+  console.log('111');
+});
+  let message = req.query.message || req.body.message || '8000Hello World!';
+  res.status(200).send(message);
+};
