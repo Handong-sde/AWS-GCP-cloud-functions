@@ -1,0 +1,70 @@
+#################AWS lambda####################
+
+exports.handler = async (event) => {
+    
+    
+    function isPrime(num) {
+    for ( var i = 2; i < num; i++ ) {
+        if ( num % i === 0 ) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function display(n) {
+    var arr = [2];
+    for ( var i = 3; i < n; i+=2 ) {
+        if ( isPrime(i) ) {
+            arr.push(i);
+        }
+    }
+    //console.log(arr); // use arr result on your own
+}
+
+;
+    // TODO implement
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify('Hello from Lambda!' + display(10000)),
+    };
+    return response;
+};
+
+#############################Google Cloud Functions######################################
+
+
+
+/**
+ * Responds to any HTTP request.
+ *
+ * @param {!express:Request} req HTTP request context.
+ * @param {!express:Response} res HTTP response context.
+ */
+exports.primeNumber128mb10000 = (req, res) => {
+  
+  function isPrime(num) {
+    for ( var i = 2; i < num; i++ ) {
+        if ( num % i === 0 ) {
+            return false;
+        }
+    }
+    return true;
+  }
+	
+  function display(n) {
+    var arr = [2];
+    for ( var i = 3; i < n; i+=2 ) {
+        if ( isPrime(i) ) {
+            arr.push(i);
+            
+        }
+    }console.log(arr);
+  }
+  console.log('1024mb 1k'); // use arr result on your own
+  //display(10000);
+
+  //let message = req.query.message || req.body.message;
+  res.status(200).send(display(1000));
+};
+
